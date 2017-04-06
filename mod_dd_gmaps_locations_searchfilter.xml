@@ -77,9 +77,7 @@
 
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.mod_dd_gmaps_locations_searchfilter.ini</language>
-        <language tag="en-GB">en-GB/en-GB.mod_dd_gmaps_locations_searchfilter.sys.ini</language>
         <language tag="de-DE">de-DE/de-DE.mod_dd_gmaps_locations_searchfilter.ini</language>
-        <language tag="de-DE">de-DE/de-DE.mod_dd_gmaps_locations_searchfilter.sys.ini</language>
     </languages>
 
     <media destination="mod_dd_gmaps_locations_searchfilter" folder="media">
