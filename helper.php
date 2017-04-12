@@ -17,6 +17,48 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 {
 
 	/**
+	 * getCategories
+	 *
+	 * @return  array of categories
+	 *
+	 * @since   Version 1.1.0.0
+	 */
+	public static function getCategories()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$input              = JFactory::getApplication()->input;
+		$category_filter    = $input->get('dd_input_category_filter', false, 'INT');
+
+		$select = (
+			$db->quoteName('id') . ' AS ' . $db->quoteName('catid') . ', ' .
+			$db->quoteName('title') . ' AS ' . $db->quoteName('category_title')
+		);
+
+		$query->select($select)
+			->from($db->qn('#__categories'))
+			->where($db->qn('published') . ' = 1 AND ' . $db->qn('extension') . ' = ' . $db->q('com_dd_gmaps_locations'));
+
+		$items = $db->setQuery($query, true)->loadAssocList();
+
+		// Set selected key
+		foreach ($items as $i => $item)
+		{
+			$items[$i]['selected'] = '';
+
+			if (isset($category_filter)
+				&& is_numeric($category_filter)
+				&& $item['catid'] == $category_filter)
+			{
+				$items[$i]['selected'] = 'selected';
+			}
+		}
+
+		return $items;
+	}
+
+	/**
 	 * isset_Script checks if a subString src exists in script header
 	 *
 	 * @param   array   $doc_scripts  JFactory Document $doc->_scripts
@@ -48,5 +90,4 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 
 		return $return;
 	}
-
 }
