@@ -4,3 +4,32 @@
  * @copyright   Copyright (C) 2011 - 2017 Didldu e.K. | HR IT-Solutions
  * @license     http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only  
 **/
+
+input, textarea, .uneditable-input {
+    width: 184px;
+}
+
+#dd_searchfilter-ajaxloader {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #000c;
+    opacity: 0.5;
+}
+#dd_searchfilter-ajaxloader .inner-loading {
+    background-image: url('../img/ajax-loader.gif');
+    background-size: 80px;
+    position: fixed;
+    z-index: 9999;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 50%;
+    height: 80px;
+    margin-top: -50px;
+    width: 80px;
+    margin-left: -50px;
+    opacity: unset;
+}
