@@ -27,8 +27,8 @@ if(!$sef_rewrite)
                 <label for="dd_input_location_search" class="element-invisible">
                     <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>
                 </label>
-                <input type="text" name="dd_input_location_search" id="dd_input_location_search" size="50"
-                       value="<?php echo htmlspecialchars($input->get("dd_input_location_search", "", "STRING"), ENT_QUOTES, 'UTF-8'); ?>"
+                <input type="text" name="location_search" id="dd_input_location_search" size="50"
+                       value="<?php echo htmlspecialchars($input->get("location_search", "", "STRING"), ENT_QUOTES, 'UTF-8'); ?>"
                        placeholder="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>"
                        autocomplete="off">
                 <input type="hidden" name="locationLatLng" id="locationLatLng"
@@ -43,9 +43,9 @@ if(!$sef_rewrite)
                 <label for="dd_input_fulltext_search" class="element-invisible">
                     <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_FULLTEXTSEARCH'); ?>
                 </label>
-                <input type="text" name="dd_input_fulltext_search" id="dd_input_fulltext_search"
+                <input type="text" name="fulltext_search" id="dd_input_fulltext_search"
                        placeholder="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_FULLTEXTSEARCH'); ?>"
-                       value="<?php echo htmlspecialchars($input->get("dd_input_fulltext_search","","STRING"),ENT_QUOTES,'UTF-8'); ?>"
+                       value="<?php echo htmlspecialchars($input->get("fulltext_search","","STRING"),ENT_QUOTES,'UTF-8'); ?>"
                        title="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_FULLTEXTSEARCH'); ?>">
             </div>
             <div class="btn-group pull-left">
@@ -56,7 +56,7 @@ if(!$sef_rewrite)
                 <label for="dd_input_category_filter" class="element-invisible">
                     <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_CATEGORYFILTER'); ?>
                 </label>
-                <select name="dd_input_category_filter" id="dd_input_category_filter" class="input-medium">
+                <select name="category_filter" id="dd_input_category_filter" class="input-medium">
                         <option value="">
                             <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SELECT_CATEGORY'); ?>
                         </option>

@@ -29,7 +29,7 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 		$query = $db->getQuery(true);
 
 		$input              = JFactory::getApplication()->input;
-		$category_filter    = $input->get('dd_input_category_filter', false, 'INT');
+		$category_filter    = $input->get('category_filter', false, 'INT');
 
 		$select = (
 			$db->quoteName('id') . ' AS ' . $db->quoteName('catid') . ', ' .
