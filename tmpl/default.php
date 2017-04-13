@@ -36,8 +36,8 @@ if(!$sef_rewrite)
                 <a class="dd_geolocate" onclick="useGeocode()" href="javascript:void(0)" rel="nofollow"
                    title="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATE'); ?>"
                    data-original-title="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATE'); ?>"></a>
-                <input id="dd_input_geolocate" type="hidden" name="dd_input_geolocate"
-                       value="<?php echo htmlspecialchars($input->get("dd_input_geolocate", "", "STRING"), ENT_QUOTES, 'UTF-8') ?>">
+                <input id="dd_input_geolocate" type="hidden" name="geolocate"
+                       value="<?php echo htmlspecialchars($input->get("geolocate", "", "STRING"), ENT_QUOTES, 'UTF-8') ?>">
             </div>
             <div class="filter-search btn-group pull-left">
                 <label for="dd_input_fulltext_search" class="element-invisible">
