@@ -112,7 +112,7 @@ if(!$sef_rewrite)
 
     function clearDD_GMaps_Form() {
         jQuery(':input','#dd_gmaps_locations_searchfilter_form')
-            .not(':button, :submit, :reset, :hidden')
+            .not(':button, :submit, :reset')
             .val('')
             .removeAttr('checked')
             .removeAttr('selected');
