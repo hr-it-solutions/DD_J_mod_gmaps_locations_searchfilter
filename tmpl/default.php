@@ -27,18 +27,25 @@ if(!$sef_rewrite)
                 <label for="dd_input_location_search" class="element-invisible">
                     <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>
                 </label>
-                <input type="text" name="location_search" id="dd_input_location_search" size="50"
+                <input type="<?php echo $params->get('show_locationsearch') ? 'text' : 'hidden'; ?>" name="location_search" id="dd_input_location_search" size="50"
                        value="<?php echo htmlspecialchars($input->get("location_search", "", "STRING"), ENT_QUOTES, 'UTF-8'); ?>"
                        placeholder="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>"
                        autocomplete="off">
                 <input type="hidden" name="locationLatLng" id="locationLatLng"
                        value="<?php echo htmlspecialchars($input->get("locationLatLng", 0, "STRING"), ENT_QUOTES, 'UTF-8'); ?>">
+	            <?php
+                // Show geolocate optione
+                if($params->get('show_locationsearch') && $params->get('show_geolocalisation')): ?>
                 <a class="dd_geolocate" onclick="useGeocode()" href="javascript:void(0)" rel="nofollow"
                    title="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATE'); ?>"
                    data-original-title="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATE'); ?>"></a>
+	            <?php endif; ?>
                 <input id="dd_input_geolocate" type="hidden" name="geolocate"
                        value="<?php echo htmlspecialchars($input->get("geolocate", "", "STRING"), ENT_QUOTES, 'UTF-8') ?>">
             </div>
+	        <?php
+	        // Show fulltext search
+	        if($params->get('show_fulltextsearch')): ?>
             <div class="filter-search btn-group pull-left">
                 <label for="dd_input_fulltext_search" class="element-invisible">
                     <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_FULLTEXTSEARCH'); ?>
@@ -48,10 +55,14 @@ if(!$sef_rewrite)
                        value="<?php echo htmlspecialchars($input->get("fulltext_search","","STRING"),ENT_QUOTES,'UTF-8'); ?>"
                        title="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_FULLTEXTSEARCH'); ?>">
             </div>
+	        <?php endif; ?>
             <div class="btn-group pull-left">
                 <button class="btn hasTooltip" type="submit" id="dd_gmaps_submit" data-original-title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"></button>
                 <button class="btn hasTooltip" type="button" id="dd_gmaps_reset" data-original-title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"></button>
             </div>
+	        <?php
+	        // Show category_filter
+	        if($params->get('show_categoryfilter')): ?>
             <div class="btn-group pull-left">
                 <label for="dd_input_category_filter" class="element-invisible">
                     <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_CATEGORYFILTER'); ?>
@@ -68,6 +79,7 @@ if(!$sef_rewrite)
                     <?php endforeach;?>
                 </select>
             </div>
+	        <?php endif; ?>
         </div>
 	</form>
     <div id="dd_searchfilter-ajaxloader" style="display:none;">
@@ -89,55 +101,6 @@ if(!$sef_rewrite)
     jQuery('#dd_gmaps_reset').bind('click', function () {
         clearDD_GMaps_Form();
     });
-
-    function submitDD_GMaps_Form() {
-        setTimeout(function(){
-            if(document.getElementById("dd_input_location_search").value != ""){
-                geocoder = new google.maps.Geocoder();
-                var address = document.getElementById("dd_input_location_search").value;
-                geocoder.geocode( { 'address': address}, function(results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        document.getElementById("dd_input_geolocate").value = "";
-                        document.getElementById("locationLatLng").value = results[0].geometry.location.lat() + ',' + results[0].geometry.location.lng();
-                    }
-                });
-            }
-        }, 300);
-        
-        jQuery('#dd_searchfilter-ajaxloader').css({"display":"inline"});
-        setTimeout(function(){
-            jQuery('#dd_gmaps_locations_searchfilter_form ').submit();
-        }, 800);
-    }
-
-    function clearDD_GMaps_Form() {
-        jQuery(':input','#dd_gmaps_locations_searchfilter_form')
-            .not(':button, :submit, :reset')
-            .val('')
-            .removeAttr('checked')
-            .removeAttr('selected');
-
-        submitDD_GMaps_Form();
-    }
-
-    function initAutoCompleteListener() {
-        // Adds auto complete input and input to LatLng function after google suggest list selected
-        var input = document.getElementById("dd_input_location_search");
-        var options = {types:[]};
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-
-        google.maps.event.addListener(autocomplete, "place_changed", function() {
-            var pl = autocomplete.getPlace();
-            jQuery("#locationLatLng").val(pl.geometry.location.lat() + "," + pl.geometry.location.lng()) ;
-
-            document.getElementById("dd_input_geolocate").value = "";
-            
-            jQuery('#dd_searchfilter-ajaxloader').css({"display":"inline"});
-            setTimeout(function(){
-                jQuery('#dd_gmaps_locations_searchfilter_form ').submit();
-            }, 400);
-        });
-    }
 
     jQuery('#dd_input_location_search').bind('keypress keydown keyup paste', function(e){
         var submit = false;
@@ -167,11 +130,8 @@ if(!$sef_rewrite)
             x.innerHTML="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATION_IS_NOT_SUPPORTED'); ?>";
         }
     }
-    function showPosition(position) {
-        document.getElementById("dd_input_geolocate").value="locate";
-        document.getElementById("locationLatLng").value=position.coords.latitude+','+position.coords.longitude;
-        document.getElementById("dd_gmaps_locations_searchfilter_form").submit();
-    }
+
+    initAutoCompleteListener();
 
     // Auto Select on Enter Function (Great feature, but if it makes problems, script could also run without this block)
     var pac_input = document.getElementById('dd_input_location_search');
