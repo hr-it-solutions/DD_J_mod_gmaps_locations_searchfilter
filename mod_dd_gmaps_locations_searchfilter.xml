@@ -20,17 +20,6 @@
             <fieldset name="basic">
 
                 <field
-                        name="show_geolocalisation"
-                        type="list"
-                        label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_GEOLOCALISATION_LABEL"
-                        description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_GEOLOCALISATION_DESC"
-                        default="1"
-                >
-                    <option value="1">JSHOW</option>
-                    <option value="0">JHIDE</option>
-                </field>
-
-                <field
                         name="show_locationsearch"
                         type="list"
                         label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_LOCATIONSEARCH_LABEL"
@@ -42,11 +31,11 @@
                 </field>
 
                 <field
-                        name="show_categoryfilter"
+                        name="show_geolocalisation"
                         type="list"
-                        label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_CATEGORYFILTER_LABEL"
-                        description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_CATEGORYFILTER_DESC"
-                        default="0"
+                        label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_GEOLOCALISATION_LABEL"
+                        description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_GEOLOCALISATION_DESC"
+                        default="1"
                 >
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
@@ -57,6 +46,17 @@
                         type="list"
                         label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_FULLTEXTSEARCH_LABEL"
                         description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_FULLTEXTSEARCH_DESC"
+                        default="0"
+                >
+                    <option value="1">JSHOW</option>
+                    <option value="0">JHIDE</option>
+                </field>
+
+                <field
+                        name="show_categoryfilter"
+                        type="list"
+                        label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_CATEGORYFILTER_LABEL"
+                        description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_CATEGORYFILTER_DESC"
                         default="0"
                 >
                     <option value="1">JSHOW</option>
