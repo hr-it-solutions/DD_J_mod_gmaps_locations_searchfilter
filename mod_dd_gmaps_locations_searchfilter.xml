@@ -85,4 +85,8 @@
         <folder>js</folder>
     </media>
 
+    <!-- Update servers -->
+    <updateservers>
+        <server type="collection" priority="1" name="HR IT-Solutions Updates">http://www.hr-it-solutions.com/jextensions/update.xml</server>
+    </updateservers>
 </extension>
