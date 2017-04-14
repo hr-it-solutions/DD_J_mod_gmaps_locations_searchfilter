@@ -6,6 +6,7 @@ A Joomla! module to display search and filter for DD Google Maps Locations. Addo
 - Geolocalisation function
 - Google search suggestions
 - Location category filter
+- Full-text search
 
 # System requirements
 Joomla 3.6 +                                                                                <br>
