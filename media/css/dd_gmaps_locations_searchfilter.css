@@ -9,6 +9,12 @@ input, textarea, .uneditable-input {
     width: 226px;
 }
 
+.dd_gmaps_locations_searchfilter {
+    display: inline-table;
+    min-height: 30px;
+    padding-bottom: 8px;
+}
+
 .dd_gmaps_locations_searchfilter .btn {
     display: inline-block;
     height: 20px;
