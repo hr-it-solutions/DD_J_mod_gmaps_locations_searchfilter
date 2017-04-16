@@ -32,8 +32,8 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 		$category_filter    = $input->get('category_filter', false, 'INT');
 
 		$select = (
-			$db->quoteName('id') . ' AS ' . $db->quoteName('catid') . ', ' .
-			$db->quoteName('title') . ' AS ' . $db->quoteName('category_title')
+			$db->qn('id') . ' AS ' . $db->qn('catid') . ', ' .
+			$db->qn('title') . ' AS ' . $db->qn('category_title')
 		);
 
 		$query->select($select)
