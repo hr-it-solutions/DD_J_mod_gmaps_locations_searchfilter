@@ -6,19 +6,20 @@
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
 **/
 
-defined ('_JEXEC') or die;
+defined('_JEXEC') or die;
+
+JHtml::_('jQuery.Framework');
 
 $app = JFactory::getApplication();
 $input = $app->input;
 
 // SEF form action URL
 $sef_rewrite = JFactory::getConfig()->get('sef_rewrite');
-$component_alias = $input->get('dd_gmaps_locations_component_alias','','STRING');
-if(!$sef_rewrite)
+$component_alias = $input->get('dd_gmaps_locations_component_alias', '', 'STRING');
+if (!$sef_rewrite)
 {
 	$component_alias = 'index.php?' . $component_alias;
 }
-
 ?>
 <div class="dd_gmaps_locations_searchfilter well">
 	<form id="dd_gmaps_locations_searchfilter_form" action="<?php echo JUri::base() . $component_alias; ?>" method="post" role="search">
@@ -86,8 +87,9 @@ if(!$sef_rewrite)
         <div class="inner-loading"></div>
     </div>
 </div>
-
 <script>
+    var dd_input_location_search = jQuery('#dd_input_location_search');
+
     jQuery(document).ready(function () {
         initAutoCompleteListener();
     });
@@ -102,7 +104,7 @@ if(!$sef_rewrite)
         clearDD_GMaps_Form();
     });
 
-    jQuery('#dd_input_location_search').bind('keypress keydown keyup paste', function(e){
+    dd_input_location_search.bind('keypress keydown keyup paste', function(e){
         var submit = false;
         if(e.keyCode == 13) {
             if(submit == false){
@@ -114,7 +116,7 @@ if(!$sef_rewrite)
     });
 
     // Empty value on focus
-    jQuery('#dd_input_location_search').focus(function(){
+    dd_input_location_search.focus(function(){
         var dd_input_location_search = jQuery('#dd_input_location_search');
         dd_input_location_search.val("");
         dd_input_location_search.attr("placeholder","<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>");
@@ -179,5 +181,4 @@ if(!$sef_rewrite)
         jQuery('#dd_searchfilter-ajaxloader').hide();
     }, 1000);
 	<?php endif; ?>
-
 </script>
