@@ -13,17 +13,9 @@ JHtml::_('jQuery.Framework');
 
 $app = JFactory::getApplication();
 $input = $app->input;
-
-// SEF form action URL
-$sef_rewrite = JFactory::getConfig()->get('sef_rewrite');
-$component_alias = $input->get('dd_gmaps_locations_component_alias', '', 'STRING');
-if (!$sef_rewrite)
-{
-	$component_alias = 'index.php?' . $component_alias;
-}
 ?>
 <div class="dd_gmaps_locations_searchfilter well">
-	<form id="dd_gmaps_locations_searchfilter_form" action="<?php echo JUri::base() . $component_alias; ?>" method="post" role="search">
+	<form id="dd_gmaps_locations_searchfilter_form" action="<?php echo JUri::root() . str_replace('component/', '', JRoute::_('index.php?option=com_dd_gmaps_locations&view=searchfilter')); ?>" method="post" role="search">
         <div id="filter-bar">
             <div class="filter-search btn-group pull-left">
                 <label for="dd_input_location_search" class="element-invisible">
