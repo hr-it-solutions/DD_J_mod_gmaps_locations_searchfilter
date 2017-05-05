@@ -6,7 +6,7 @@
     <authorUrl>https://www.hr-it-solutions.com</authorUrl>
     <copyright>Copyright (C) 2011 - 2017 Didldu e.K. | HR IT-Solutions</copyright>
     <license>GNU/GPLv2 only</license>
-    <version>1.1.0.5</version>
+    <version>1.1.0.6</version>
     <description>MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_XML_DESCRIPTION</description>
 
     <files>
@@ -83,6 +83,7 @@
 
     <media destination="mod_dd_gmaps_locations_searchfilter" folder="media">
         <folder>css</folder>
+        <folder>img</folder>
         <folder>js</folder>
     </media>
 
