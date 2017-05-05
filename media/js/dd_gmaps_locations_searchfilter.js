@@ -6,7 +6,7 @@
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  **/
 
-function submitDD_GMaps_Form() {
+;function submitDD_GMaps_Form() {
     setTimeout(function(){
         if(document.getElementById("dd_input_location_search").value != ""){
             geocoder = new google.maps.Geocoder();
