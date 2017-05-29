@@ -16,7 +16,6 @@ defined('_JEXEC') or die;
  */
 class ModDD_GMaps_Locations_SearchFilter_Helper
 {
-
 	/**
 	 * getCategories
 	 *
