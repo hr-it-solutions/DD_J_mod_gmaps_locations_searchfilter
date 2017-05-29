@@ -6,7 +6,7 @@
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  **/
 
-input, textarea, .uneditable-input {
+#dd_gmaps_locations_searchfilter input {
     width: 226px;
 }
 

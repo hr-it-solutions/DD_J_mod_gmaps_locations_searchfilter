@@ -9,13 +9,15 @@
 
 defined('_JEXEC') or die;
 
+JHtml::_('stylesheet', 'mod_dd_gmaps_locations_searchfilter/dd_gmaps_locations_searchfilter.min.css', array('version' => 'auto', 'relative' => true));
+
 JHtml::_('jQuery.Framework');
 
 $app = JFactory::getApplication();
 $input = $app->input;
 ?>
 <div class="dd_gmaps_locations_searchfilter well">
-	<form id="dd_gmaps_locations_searchfilter_form" action="<?php echo str_replace('component/', '', JRoute::_('index.php?option=com_dd_gmaps_locations&view=searchfilter')); ?>" method="post" role="search">
+	<form id="dd_gmaps_locations_searchfilter_form" action="<?php echo JRoute::_('index.php?option=com_dd_gmaps_locations&view=locations'); ?>" method="post" role="search">
         <div id="filter-bar">
             <div class="filter-search btn-group pull-left">
                 <label for="dd_input_location_search" class="element-invisible">
