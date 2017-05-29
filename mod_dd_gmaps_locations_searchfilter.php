@@ -26,7 +26,6 @@ if (!ModDD_GMaps_Locations_SearchFilter_Helper::isset_Script($doc->_scripts, $Pl
 	$doc->addScript('https://maps.google.com/maps/api/' . $Places_API . '&key=' . $API_Key);
 }
 
-$doc->addStyleSheet(JUri::base() . 'media/mod_dd_gmaps_locations_searchfilter/css/dd_gmaps_locations_searchfilter.min.css');
 $doc->addScript(JUri::base() . 'media/mod_dd_gmaps_locations_searchfilter/js/dd_gmaps_locations_searchfilter.min.js');
 
 require JModuleHelper::getLayoutPath('mod_dd_gmaps_locations_searchfilter', $params->get('layout', 'default'));
