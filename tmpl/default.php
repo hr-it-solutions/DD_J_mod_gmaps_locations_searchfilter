@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+JHtml::_('stylesheet', 'mod_dd_gmaps_locations_searchfilter/dd_gmaps_locations_searchfilter.min.css', array('version' => 'auto', 'relative' => true));
+
 JHtml::_('jQuery.Framework');
 
 $app = JFactory::getApplication();
