@@ -58,6 +58,47 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 		return $items;
 	}
 
+
+	/**
+	 * getFederalStates
+	 *
+	 * @return  array of categories
+	 *
+	 * @since   Version 1.1.0.0
+	 */
+	public static function getFederalStates()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$input               = JFactory::getApplication()->input;
+		$federalstate_filter = $input->get('federalstate_filter', false, 'STRING');
+
+		$query->select($db->qn('federalstate'))
+			->from($db->qn('#__dd_gmaps_locations'))
+			->where($db->qn('federalstate') . " <>''");
+
+		// Filter state
+		$query->where('state = 1');
+
+		$items = $db->setQuery($query, true)->loadAssocList();
+
+		// Set selected key
+		foreach ($items as $i => $item)
+		{
+			$items[$i]['selected'] = '';
+
+			if (isset($federalstate_filter)
+				&& is_string($federalstate_filter)
+				&& $item['federalstate'] == $federalstate_filter)
+			{
+				$items[$i]['selected'] = 'selected';
+			}
+		}
+
+		return $items;
+	}
+
 	/**
 	 * isset_Script checks if a subString src exists in script header
 	 *

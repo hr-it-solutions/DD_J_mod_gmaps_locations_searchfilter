@@ -76,6 +76,26 @@ $input = $app->input;
                 </select>
             </div>
 	        <?php endif; ?>
+	        <?php
+	        // Show federalstate_filter
+	        if($params->get('show_federalstatefilter')): ?>
+                <div class="btn-group pull-left">
+                    <label for="dd_input_federalstate_filter" class="element-invisible">
+				        <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_FEDERALSTATEFILTER'); ?>
+                    </label>
+                    <select name="federalstate_filter" id="dd_input_federalstate_filter" class="input-medium">
+                        <option value="">
+					        <?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SELECT_FEDERALSTATEFILTER'); ?>
+                        </option>
+				        <?php foreach (ModDD_GMaps_Locations_SearchFilter_Helper::getFederalStates() as $federalstate): ?>
+                            <option value="<?php echo $federalstate['federalstate']; ?>"
+						        <?php echo $federalstate['selected'] == 'selected' ? 'selected' : ''; ?>>
+						        <?php echo $federalstate['federalstate']?>
+                            </option>
+				        <?php endforeach;?>
+                    </select>
+                </div>
+	        <?php endif; ?>
         </div>
 	</form>
     <div id="dd_searchfilter-ajaxloader" style="display:none;">
@@ -83,16 +103,18 @@ $input = $app->input;
     </div>
 </div>
 <script>
+jQuery(function () {
     var dd_input_location_search = jQuery('#dd_input_location_search');
 
-    jQuery(document).ready(function () {
-        initAutoCompleteListener();
-    });
+    initAutoCompleteListener();
 
     jQuery('#dd_gmaps_submit ').bind('click', function(){
         submitDD_GMaps_Form();
     });
     jQuery('#dd_input_category_filter').bind('change', function () {
+        submitDD_GMaps_Form();
+    });
+    jQuery('#dd_input_federalstate_filter').bind('change', function () {
         submitDD_GMaps_Form();
     });
     jQuery('#dd_gmaps_reset').bind('click', function () {
@@ -176,4 +198,5 @@ $input = $app->input;
         jQuery('#dd_searchfilter-ajaxloader').hide();
     }, 1000);
 	<?php endif; ?>
+});
 </script>
