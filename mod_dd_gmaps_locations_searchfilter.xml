@@ -6,7 +6,7 @@
     <authorUrl>https://www.hr-it-solutions.com</authorUrl>
     <copyright>Copyright (C) 2011 - 2017 Didldu e.K. | HR IT-Solutions</copyright>
     <license>GNU/GPLv2 only</license>
-    <version>1.1.0.8</version>
+    <version>1.1.0.10</version>
     <description>MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_XML_DESCRIPTION</description>
 
     <files>
@@ -56,6 +56,20 @@
                         type="list"
                         label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_CATEGORYFILTER_LABEL"
                         description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_CATEGORYFILTER_DESC"
+                        default="0"
+                >
+                    <option value="1">JSHOW</option>
+                    <option value="0">JHIDE</option>
+                </field>
+
+                <field type="spacer" name="spacer_searchfilter_hr" label="&lt;hr/&gt;" description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_EXPERIMENTAL_DESC" />
+                <field type="spacer" name="spacer_searchfilter" label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_EXPERIMENTAL_LABEL" description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_EXPERIMENTAL_DESC" />
+
+                <field
+                        name="show_federalstatefilter"
+                        type="list"
+                        label="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_FEDERALSTATEFILTER_LABEL"
+                        description="MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_SHOW_FEDERALSTATEFILTER_DESC"
                         default="0"
                 >
                     <option value="1">JSHOW</option>

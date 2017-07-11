@@ -23,9 +23,12 @@ $API_Key = '&key=' . $componentParams->get('google_api_key_js_places');
 
 if (!ModDD_GMaps_Locations_SearchFilter_Helper::isset_Script($doc->_scripts, $Places_API))
 {
-	$doc->addScript('https://maps.google.com/maps/api/' . $Places_API . '&key=' . $API_Key);
+	JHTML::_('script', 'https://maps.google.com/maps/api/' . $Places_API . '&key=' . $API_Key, array('relative' => false));
 }
 
-$doc->addScript(JUri::base() . 'media/mod_dd_gmaps_locations_searchfilter/js/dd_gmaps_locations_searchfilter.min.js');
+JHTML::_('script', 'mod_dd_gmaps_locations_searchfilter/dd_gmaps_locations_searchfilter.min.js', array('version' => 'auto', 'relative' => true));
+
+// Check for a custom CSS file
+JHtml::_('stylesheet', 'mod_dd_gmaps_module/user.css', array('version' => 'auto', 'relative' => true));
 
 require JModuleHelper::getLayoutPath('mod_dd_gmaps_locations_searchfilter', $params->get('layout', 'default'));
