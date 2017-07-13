@@ -103,100 +103,101 @@ $input = $app->input;
     </div>
 </div>
 <script>
+
+var dd_input_location_search = jQuery('#dd_input_location_search');
+
 jQuery(function () {
-    var dd_input_location_search = jQuery('#dd_input_location_search');
-
     initAutoCompleteListener();
-
-    jQuery('#dd_gmaps_submit ').bind('click', function(){
-        submitDD_GMaps_Form();
-    });
-    jQuery('#dd_input_category_filter').bind('change', function () {
-        submitDD_GMaps_Form();
-    });
-    jQuery('#dd_input_federalstate_filter').bind('change', function () {
-        submitDD_GMaps_Form();
-    });
-    jQuery('#dd_gmaps_reset').bind('click', function () {
-        clearDD_GMaps_Form();
-    });
-
-    dd_input_location_search.bind('keypress keydown keyup paste', function(e){
-        var submit = false;
-        if(e.keyCode == 13) {
-            if(submit == false){
-                e.preventDefault();
-                submit = true;
-            }
-            submitDD_GMaps_Form();
-        }
-    });
-
-    // Empty value on focus
-    dd_input_location_search.focus(function(){
-        var dd_input_location_search = jQuery('#dd_input_location_search');
-        dd_input_location_search.val("");
-        dd_input_location_search.attr("placeholder","<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>");
-        jQuery('#locationLatLng').val("");
-    });
-
-    // Geolocate function and associated events
-    function useGeocode(){
-        document.getElementById("dd_input_location_search").value = "";
-        if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATION_IS_NOT_SUPPORTED'); ?>";
-        }
-    }
-
-    initAutoCompleteListener();
-
-    // Auto Select on Enter Function (Great feature, but if it makes problems, script could also run without this block)
-    var pac_input = document.getElementById('dd_input_location_search');
-    (function pacSelectFirst(input) {
-        // store the original event binding function
-        var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
-
-        function addEventListenerWrapper(type, listener) {
-            // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
-            // and then trigger the original listener.
-            if (type == "keydown") {
-                var orig_listener = listener;
-                listener = function(event) {
-                    var suggestion_selected = jQuery(".pac-item-selected").length > 0;
-                    if (event.which == 13 && !suggestion_selected) {
-                        var simulated_downarrow = jQuery.Event("keydown", {
-                            keyCode: 40,
-                            which: 40
-                        });
-                        orig_listener.apply(input, [simulated_downarrow]);
-                    }
-
-                    orig_listener.apply(input, [event]);
-                };
-            }
-            _addEventListener.apply(input, [type, listener]);
-        }
-        input.addEventListener = addEventListenerWrapper;
-        input.attachEvent = addEventListenerWrapper;
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
-
-    })(pac_input);
-
-    // Geolocate Fix! (Set location only if gelocate (Delay needed!)
-	<?php
-	if($input->get("locationLatLng", 0, "STRING")): ?>
-    setTimeout(function(){ // Show delay till location is set
-        jQuery('#dd_searchfilter-ajaxloader').show();
-    }, 100);
-    setTimeout(function(){ // Set location
-        jQuery("#locationLatLng").val('<?php echo htmlspecialchars($input->get("locationLatLng",0,"STRING"),ENT_QUOTES,'UTF-8'); ?>') ;
-    }, 200);
-    setTimeout(function(){ // Remove delay
-        jQuery('#dd_searchfilter-ajaxloader').hide();
-    }, 1000);
-	<?php endif; ?>
 });
+
+jQuery('#dd_gmaps_submit ').bind('click', function(){
+    submitDD_GMaps_Form();
+});
+jQuery('#dd_input_category_filter').bind('change', function () {
+    submitDD_GMaps_Form();
+});
+jQuery('#dd_input_federalstate_filter').bind('change', function () {
+    submitDD_GMaps_Form();
+});
+jQuery('#dd_gmaps_reset').bind('click', function () {
+    clearDD_GMaps_Form();
+});
+
+dd_input_location_search.bind('keypress keydown keyup paste', function(e){
+    var submit = false;
+    if(e.keyCode == 13) {
+        if(submit == false){
+            e.preventDefault();
+            submit = true;
+        }
+        submitDD_GMaps_Form();
+    }
+});
+
+// Empty value on focus
+dd_input_location_search.focus(function(){
+    var dd_input_location_search = jQuery('#dd_input_location_search');
+    dd_input_location_search.val("");
+    dd_input_location_search.attr("placeholder","<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>");
+    jQuery('#locationLatLng').val("");
+});
+
+// Geolocate function and associated events
+function useGeocode(){
+    document.getElementById("dd_input_location_search").value = "";
+    if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATION_IS_NOT_SUPPORTED'); ?>";
+    }
+}
+
+initAutoCompleteListener();
+
+// Auto Select on Enter Function (Great feature, but if it makes problems, script could also run without this block)
+var pac_input = document.getElementById('dd_input_location_search');
+(function pacSelectFirst(input) {
+    // store the original event binding function
+    var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+    function addEventListenerWrapper(type, listener) {
+        // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+        // and then trigger the original listener.
+        if (type == "keydown") {
+            var orig_listener = listener;
+            listener = function(event) {
+                var suggestion_selected = jQuery(".pac-item-selected").length > 0;
+                if (event.which == 13 && !suggestion_selected) {
+                    var simulated_downarrow = jQuery.Event("keydown", {
+                        keyCode: 40,
+                        which: 40
+                    });
+                    orig_listener.apply(input, [simulated_downarrow]);
+                }
+
+                orig_listener.apply(input, [event]);
+            };
+        }
+        _addEventListener.apply(input, [type, listener]);
+    }
+    input.addEventListener = addEventListenerWrapper;
+    input.attachEvent = addEventListenerWrapper;
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+})(pac_input);
+
+// Geolocate Fix! (Set location only if gelocate (Delay needed!)
+<?php
+if($input->get("locationLatLng", 0, "STRING")): ?>
+setTimeout(function(){ // Show delay till location is set
+    jQuery('#dd_searchfilter-ajaxloader').show();
+}, 100);
+setTimeout(function(){ // Set location
+    jQuery("#locationLatLng").val('<?php echo htmlspecialchars($input->get("locationLatLng",0,"STRING"),ENT_QUOTES,'UTF-8'); ?>') ;
+}, 200);
+setTimeout(function(){ // Remove delay
+    jQuery('#dd_searchfilter-ajaxloader').hide();
+}, 1000);
+<?php endif; ?>
 </script>
