@@ -125,8 +125,8 @@ jQuery('#dd_gmaps_reset').bind('click', function () {
 
 dd_input_location_search.bind('keypress keydown keyup paste', function(e){
     var submit = false;
-    if(e.keyCode == 13) {
-        if(submit == false){
+    if(e.keyCode === 13) {
+        if(submit === false){
             e.preventDefault();
             submit = true;
         }
@@ -137,18 +137,26 @@ dd_input_location_search.bind('keypress keydown keyup paste', function(e){
 // Empty value on focus
 dd_input_location_search.focus(function(){
     var dd_input_location_search = jQuery('#dd_input_location_search');
-    dd_input_location_search.val("");
-    dd_input_location_search.attr("placeholder","<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>");
-    jQuery('#locationLatLng').val("");
+    dd_input_location_search.val('');
+    dd_input_location_search.attr('placeholder','<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_LOCATIONSEARCH'); ?>');
+    jQuery('#locationLatLng').val('');
 });
 
 // Geolocate function and associated events
 function useGeocode(){
-    document.getElementById("dd_input_location_search").value = "";
+
+    if (window.location.protocol !== 'https:') {
+        var jmsgsHTTP = ['<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATION_HTTPS_REQUIRED'); ?>'];
+        Joomla.renderMessages({'info': jmsgsHTTP });
+    }
+
+    jQuery('#dd_input_location_search').val = '';
+
     if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        x.innerHTML="<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATION_IS_NOT_SUPPORTED'); ?>";
+        var jmsgsBrowser = ['<?php echo JText::_('MOD_DD_GMAPS_LOCATIONS_SEARCHFILTER_GEOLOCATION_IS_NOT_SUPPORTED'); ?>'];
+        Joomla.renderMessages({'info': jmsgsBrowser });
     }
 }
 
@@ -163,12 +171,12 @@ var pac_input = document.getElementById('dd_input_location_search');
     function addEventListenerWrapper(type, listener) {
         // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
         // and then trigger the original listener.
-        if (type == "keydown") {
+        if (type === 'keydown') {
             var orig_listener = listener;
             listener = function(event) {
-                var suggestion_selected = jQuery(".pac-item-selected").length > 0;
+                var suggestion_selected = jQuery('.pac-item-selected').length > 0;
                 if (event.which == 13 && !suggestion_selected) {
-                    var simulated_downarrow = jQuery.Event("keydown", {
+                    var simulated_downarrow = jQuery.Event('keydown', {
                         keyCode: 40,
                         which: 40
                     });
@@ -189,12 +197,12 @@ var pac_input = document.getElementById('dd_input_location_search');
 
 // Geolocate Fix! (Set location only if gelocate (Delay needed!)
 <?php
-if($input->get("locationLatLng", 0, "STRING")): ?>
+if($input->get('locationLatLng', 0, 'STRING')): ?>
 setTimeout(function(){ // Show delay till location is set
     jQuery('#dd_searchfilter-ajaxloader').show();
 }, 100);
 setTimeout(function(){ // Set location
-    jQuery("#locationLatLng").val('<?php echo htmlspecialchars($input->get("locationLatLng",0,"STRING"),ENT_QUOTES,'UTF-8'); ?>') ;
+    jQuery('#locationLatLng').val('<?php echo htmlspecialchars($input->get('locationLatLng', 0, 'STRING'), ENT_QUOTES, 'UTF-8'); ?>') ;
 }, 200);
 setTimeout(function(){ // Remove delay
     jQuery('#dd_searchfilter-ajaxloader').hide();
