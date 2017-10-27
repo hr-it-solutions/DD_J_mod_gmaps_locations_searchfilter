@@ -150,7 +150,7 @@ function useGeocode(){
         Joomla.renderMessages({'info': jmsgsHTTP });
     }
 
-    jQuery('#dd_input_location_search').val = '';
+    jQuery('#dd_input_location_search').val('');
 
     if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -175,7 +175,7 @@ var pac_input = document.getElementById('dd_input_location_search');
             var orig_listener = listener;
             listener = function(event) {
                 var suggestion_selected = jQuery('.pac-item-selected').length > 0;
-                if (event.which == 13 && !suggestion_selected) {
+                if (event.which === 13 && !suggestion_selected) {
                     var simulated_downarrow = jQuery.Event('keydown', {
                         keyCode: 40,
                         which: 40
@@ -197,7 +197,7 @@ var pac_input = document.getElementById('dd_input_location_search');
 
 // Geolocate Fix! (Set location only if gelocate (Delay needed!)
 <?php
-if($input->get('locationLatLng', 0, 'STRING')): ?>
+if ($input->get('locationLatLng', 0, 'STRING')): ?>
 setTimeout(function(){ // Show delay till location is set
     jQuery('#dd_searchfilter-ajaxloader').show();
 }, 100);
