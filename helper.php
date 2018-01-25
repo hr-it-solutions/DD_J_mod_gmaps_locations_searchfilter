@@ -28,8 +28,13 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
-		$input              = JFactory::getApplication()->input;
-		$category_filter    = $input->get('category_filter', false, 'INT');
+		$app = JFactory::getApplication();
+
+		// filter_catid from active menu params
+		$filter_catid = $app->getMenu()->getActive()->getParams()->get('filter_catid');
+
+		$input              = $app->input;
+		$category_filter    = $input->get('category_filter', $filter_catid, 'INT');
 
 		$select = (
 			$db->qn('id') . ' AS ' . $db->qn('catid') . ', ' .
@@ -71,8 +76,13 @@ class ModDD_GMaps_Locations_SearchFilter_Helper
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
+		$app = JFactory::getApplication();
+
+		// filter_federalstate from active menu params
+		$filter_federalstate = $app->getMenu()->getActive()->getParams()->get('filter_federalstate');
+
 		$input               = JFactory::getApplication()->input;
-		$federalstate_filter = $input->get('federalstate_filter', false, 'STRING');
+		$federalstate_filter = $input->get('federalstate_filter', $filter_federalstate, 'STRING');
 
 		$query->select($db->qn('federalstate'))
 			->from($db->qn('#__dd_gmaps_locations'))
