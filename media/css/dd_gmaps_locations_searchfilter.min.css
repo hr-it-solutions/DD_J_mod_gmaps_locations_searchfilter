@@ -2,7 +2,7 @@
  * @package    DD_GMaps_Locations_Searchfilter
  *
  * @author     HR IT-Solutions Florian Häusler <info@hr-it-solutions.com>
- * @copyright  Copyright (C) 2011 - 2017 Didldu e.K. | HR IT-Solutions
+ * @copyright  Copyright (C) 2011 - 2018 Didldu e.K. | HR IT-Solutions
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  **/
 #dd_gmaps_locations_searchfilter input{width:226px}.dd_gmaps_locations_searchfilter{display:inline-table;min-height:30px;padding-bottom:8px}.dd_geolocate,.dd_gmaps_locations_searchfilter .btn{display:inline-block;height:20px;width:20px;background-repeat:no-repeat}.dd_gmaps_locations_searchfilter .btn{padding:13px 15px;background-position:8px;background-size:14px auto}.dd_geolocate{background-image:url(../img/geolocate.png);background-position:2px 4.2px;background-size:15px auto;border:none;position:absolute;float:right;top:2px;right:4px;cursor:pointer;padding:0}#dd_gmaps_submit{background-image:url(../img/search.png);background-position:10px}#dd_gmaps_reset{background-image:url(../img/reset.png);background-position:10px}#dd_searchfilter-ajaxloader{width:100%;height:100%;z-index:999;top:0;left:0;position:fixed;background-color:#000c;opacity:.5}#dd_searchfilter-ajaxloader .inner-loading{background-image:url(../img/ajax-loader.gif);background-size:80px;position:fixed;z-index:9999;background-repeat:no-repeat;top:50%;left:50%;height:80px;margin-top:-50px;width:80px;margin-left:-50px;opacity:unset}
