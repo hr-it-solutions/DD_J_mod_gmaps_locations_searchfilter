@@ -19,7 +19,7 @@ $componentParams = JComponentHelper::getParams('com_dd_gmaps_locations');
 $doc = JFactory::getDocument();
 
 $Places_API = 'js?&libraries=places&v=3';
-$API_Key = '&key=' . $componentParams->get('google_api_key_js_places');
+$API_Key = $componentParams->get('google_api_key_js_places');
 
 if (!ModDD_GMaps_Locations_SearchFilter_Helper::isset_Script($doc->_scripts, $Places_API))
 {
