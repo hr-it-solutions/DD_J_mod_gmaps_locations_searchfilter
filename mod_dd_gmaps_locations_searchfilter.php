@@ -19,7 +19,7 @@ $componentParams = JComponentHelper::getParams('com_dd_gmaps_locations');
 $doc = JFactory::getDocument();
 
 $Places_API = 'js?&libraries=places&v=3';
-$API_Key = '&key=' . $componentParams->get('google_api_key_js_places');
+$API_Key = $componentParams->get('google_api_key_js_places');
 
 if (!ModDD_GMaps_Locations_SearchFilter_Helper::isset_Script($doc->_scripts, $Places_API))
 {
@@ -27,6 +27,11 @@ if (!ModDD_GMaps_Locations_SearchFilter_Helper::isset_Script($doc->_scripts, $Pl
 }
 
 JHTML::_('script', 'mod_dd_gmaps_locations_searchfilter/dd_gmaps_locations_searchfilter.min.js', array('version' => 'auto', 'relative' => true));
+
+if($params->get('countries_reduced_selection'))
+{
+	ModDD_GMaps_Locations_SearchFilter_Helper::setReducedCountriesScriptDeclaration();
+}
 
 // Check for a custom CSS file
 JHtml::_('stylesheet', 'mod_dd_gmaps_module/user.css', array('version' => 'auto', 'relative' => true));
