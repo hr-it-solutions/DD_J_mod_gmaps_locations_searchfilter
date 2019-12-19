@@ -28,6 +28,11 @@ if (!ModDD_GMaps_Locations_SearchFilter_Helper::isset_Script($doc->_scripts, $Pl
 
 JHTML::_('script', 'mod_dd_gmaps_locations_searchfilter/dd_gmaps_locations_searchfilter.min.js', array('version' => 'auto', 'relative' => true));
 
+if($params->get('countries_reduced_selection'))
+{
+	ModDD_GMaps_Locations_SearchFilter_Helper::setReducedCountriesScriptDeclaration();
+}
+
 // Check for a custom CSS file
 JHtml::_('stylesheet', 'mod_dd_gmaps_module/user.css', array('version' => 'auto', 'relative' => true));
 

@@ -32,8 +32,13 @@
 
 var initAutoCompleteListener = function initAutoCompleteListener() {
     // Adds auto complete input and input to LatLng function after google suggest list selected
-    var input = document.getElementById('dd_input_location_search');
-    var options = {types:[]};
+    var input = document.getElementById('dd_input_location_search'),
+        options = {types:[]};
+
+    if (typeof DD_AutoCompleteOptions !== 'undefined') {
+        options = DD_AutoCompleteOptions;
+    }
+
     var autocomplete = new google.maps.places.Autocomplete(input, options);
 
     google.maps.event.addListener(autocomplete, 'place_changed', function() {

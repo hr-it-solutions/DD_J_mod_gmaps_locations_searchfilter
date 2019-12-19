@@ -17,6 +17,38 @@ defined('_JEXEC') or die;
 class ModDD_GMaps_Locations_SearchFilter_Helper
 {
 	/**
+	 * setReducedCountriesScriptDeclaration();
+	 * @since  Version 1.1.1.4
+	 */
+	public static function setReducedCountriesScriptDeclaration()
+	{
+		if (JFile::exists(JPATH_ADMINISTRATOR . '/components/com_dd_gmaps_locations/models/countries/countries.json'))
+		{
+			$countries = file_get_contents(JPATH_ADMINISTRATOR . '/components/com_dd_gmaps_locations/models/countries/countries.json');
+			$countries = json_decode($countries);
+
+			$AutoCompleteOptionsCountries = [];
+
+			foreach ($countries->extension->countries->country as $country)
+			{
+				if ($country->selection === 'reduced')
+				{
+					array_push($AutoCompleteOptionsCountries, "'" . strtolower($country->code) . "'");
+				}
+			}
+
+			if (count($AutoCompleteOptionsCountries))
+			{
+				$AutoCompleteOptions = "{types: ['(regions)'], componentRestrictions: {country: [" . implode(',' , $AutoCompleteOptionsCountries) . "]}}";
+
+				JFactory::getDocument()->addScriptDeclaration('
+					var DD_AutoCompleteOptions = ' . $AutoCompleteOptions . ';
+				');
+			}
+		}
+	}
+
+	/**
 	 * getCategories
 	 *
 	 * @return  array of categories
